@@ -45,13 +45,16 @@ exports.inviteUser = function(req, res) {
 
 ```
 ## Analysis:
-Here is some of my though on the code snippet referenced above:
+### Why I do not enjoy this code:
+* __possible errors from auth service are not handled__
+   * owner is not exist
+   * owner does not have access to modify shop
+* a lot of __if-else__ statements
+* __vars__.
+* one __big__ function
+### How to make it more clean, testable, exception free, reusable
+* __avoid nested structure__ by switching from callback-based to promises and async/await approach. It will allow to have only one try-catch block
+* __move each validation step to separate function__. In case of failure each of function throws exception to __common try-catch block__ with specific message
+* __use modert js standart__.
 
-* __possible errors from auth service are not handled__:
-   * _owner is not exist_
-   * _owner does not have access to modify shop_
-* 
-* __How to make it more clean, testable, exception free, reusable__:
-   * _avoid nested structure_ by switching from callback-based to promises and async/await approach. It will allow to have only one try-catch block.
-   * _move each validation step to separate function_. In case of failure each of function throws exception to common try-catch with specific message.
 
