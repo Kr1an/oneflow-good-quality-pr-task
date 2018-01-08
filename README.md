@@ -53,8 +53,18 @@ exports.inviteUser = function(req, res) {
 * __vars__.
 * one __big__ function
 ### How to make it more clean, testable, exception free, reusable
-* __avoid nested structure__ by switching from callback-based to promises and async/await approach. It will allow to have only one try-catch block
 * __move each validation step to separate function__. In case of failure each of function throws exception to __common try-catch block__ with specific message
 * __use modert js standart__.
+* __avoid nested structure__ by switching from _callback-based_ to __promises and async/await approach__. It will allow to have only one try-catch block
+```javascript
+try {
+    ...
+    const shop = await findShopOrThrowError(shopId);
+    const invitation = await createInvitationOrThrowError(body);
+    const invitedUser = await updateCreateUserOrThrowError(body, invitation);
+    ...
+} catch (e) {...}
+```
+
 
 
